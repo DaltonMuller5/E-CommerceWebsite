@@ -2,12 +2,251 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Sitecom</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --card-bg: #16213e;
+      --button-bg: #459ae9;
+      --button-hover: #008198;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: whitesmoke;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: var(--card-bg);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    header h3 {
+      font-size: 1.5rem;
+      color: var(--text-light);
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background-color: var(--accent);
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: var(--button-hover);
+    }
+
+    .content {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.8s ease-out;
+
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+
+    form label {
+      font-weight: 600;
+      text-align: left;
+    }
+
+    form input {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      background-color: #eeeeee;
+    }
+
+    form button {
+      padding: 14px;
+      font-size: 1rem;
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      color: #7dffaf;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background-color: var(--card-bg);
+    }
+
+    .shop-link {
+      align-items: right;
+      text-decoration: none;
+      color: #ffffff;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+
+    .shop-link:hover {
+      background-color: #008198;
+      color: #ffffff;
+    }
+
+    .market {
+      color: white;
+    }
+
+    .fx {
+      color: black;
+      font-size: 0.67cm;
+
+    }
+
+    .icon {
+      color: white;
+      font-size: 20px;
+    }
+  </style>
 </head>
 
 <body>
+
+  <header>
+    <h3>
+      <span class="market">Market</span><span class="fx">Fx <i class="fa-solid fa-store icon"></i></span>
+    </h3>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#" class="shop-link">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Shop
+      </a>
+
+    </nav>
+  </header>
+
+  <main class="content">
+    <div class="card">
+      <h3>Welcome! Please create Your Account:</h3>
+      <form id="registrationForm">
+        <div>
+          <label for="userName">Full Name: <br></label>
+          <input type="text" id="userName" name="userName" required placeholder="Digit your name" />
+        </div>
+        <div>
+          <label for="userEmail">Email Address:</label>
+          <input type="email" id="userEmail" name="userEmail" required placeholder="(your e-mail@gmail.com)" />
+        </div>
+        <button type="submit">Sign Up</button>
+        <p class="message" id="successMessage"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025. Owned by Eldo Jr. and Dalton Muller <br> All rights reserved.
+  </footer>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const message = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+
+      if (name && email) {
+        localStorage.setItem('marketfx_user', JSON.stringify({ name, email }));
+
+        message.textContent = `Welcome, ${name}! We've registered your email: ${email}`;
+        message.style.color = '#7dffaf';
+        form.reset();
+
+      } else {
+        message.textContent = 'Please fill in all fields.';
+        message.style.color = 'orange';
+      }
+    });
+  </script>
+
 
 </body>
 
